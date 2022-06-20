@@ -12,13 +12,13 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		ApplicationContext ac=SpringApplication.run(DemoApplication.class, args);
 		System.out.println("Spring boot APP");
-	    String task="documentation";
+	    String task="testing";
 	    
 	    com.system.Process p=(com.system.Process)ac.getBean(task);
 	    System.out.println(p.hashCode());
 	    p.task();
-	    p=(com.system.Process)ac.getBean(task);
-	    System.out.println(p.hashCode());
+	  /*  p=(com.system.Process)ac.getBean(task);
+	    System.out.println(p.hashCode());*/
 	
 	}
 
