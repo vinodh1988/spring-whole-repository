@@ -2,7 +2,7 @@ package com.system;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("reporting")
 public class LatestReporting implements Subtasks {
 
 	@Override
