@@ -60,4 +60,16 @@ public class DataServiceImpl implements DataService{
 			  throw new RecordNotFoundException();
 	}
 
+	@Override
+	public void deletePerson(int sno) throws RecordNotFoundException {
+		// TODO Auto-generated method stub
+		Person p = peoplerepo.findBySno(sno);
+		if(p==null)
+			throw new RecordNotFoundException();
+		else
+			peoplerepo.delete(p);
+	}
+	
+	
+
 }

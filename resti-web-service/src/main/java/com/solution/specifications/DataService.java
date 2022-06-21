@@ -11,4 +11,5 @@ public interface DataService {
     public List<Person> getPeopleFromDB();
     public void addPerson(Person person) throws RecordAlreadyExistsException;
     public void updatePerson(Person person) throws RecordNotFoundException;
+    public void deletePerson(int sno) throws RecordNotFoundException;
 }
