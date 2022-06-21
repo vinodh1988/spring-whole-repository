@@ -10,6 +10,7 @@ import com.solution.model.Person;
 import com.solution.repositories.PeopleRepository;
 import com.solution.specifications.DataService;
 import com.solution.utilities.RecordAlreadyExistsException;
+import com.solution.utilities.RecordNotFoundException;
 
 @Service
 public class DataServiceImpl implements DataService{
@@ -44,6 +45,19 @@ public class DataServiceImpl implements DataService{
 		  
 		  else
 			  throw new RecordAlreadyExistsException();
+	}
+
+	@Override
+	public void updatePerson(Person person) throws RecordNotFoundException {
+		// TODO Auto-generated method stub
+		  Person p= peoplerepo.findBySno(person.getSno());
+		  if(p!=null)
+		  {
+			  peoplerepo.save(person);
+		  }
+		  
+		  else
+			  throw new RecordNotFoundException();
 	}
 
 }
