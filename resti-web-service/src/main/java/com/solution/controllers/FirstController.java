@@ -22,7 +22,7 @@ import com.solution.utilities.RecordNotFoundException;
 
 @RestController
 @RequestMapping("/api")
-public class FirstController {
+public class FirstController implements ApiSpec{
 	@Autowired
 	DataService service;
    
