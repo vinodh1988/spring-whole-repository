@@ -3,12 +3,17 @@ package com.solution.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.solution.model.Person;
 import com.solution.specifications.DataService;
+import com.solution.utilities.RecordAlreadyExistsException;
 
 
 @RestController
@@ -30,5 +35,18 @@ public class FirstController {
 	@GetMapping("/dbpeople")
 	public List<Person> get1(){
 		return service.getPeopleFromDB();
+	}
+	
+	@PostMapping("/dbpeople")
+	public ResponseEntity<String> addPerson(@RequestBody Person person)
+	{
+		try {
+			service.addPerson(person);
+			return new ResponseEntity<String>("Successfully inserted",HttpStatus.CREATED);
+		}
+		catch(RecordAlreadyExistsException e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
 	}
 }

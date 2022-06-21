@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.solution.model.Person;
 import com.solution.repositories.PeopleRepository;
 import com.solution.specifications.DataService;
+import com.solution.utilities.RecordAlreadyExistsException;
 
 @Service
 public class DataServiceImpl implements DataService{
@@ -30,6 +31,19 @@ public class DataServiceImpl implements DataService{
 	public List<Person> getPeopleFromDB() {
 		// TODO Auto-generated method stub
 		return peoplerepo.findAll();
+	}
+
+	@Override
+	public void addPerson(Person person) throws RecordAlreadyExistsException {
+		// TODO Auto-generated method stub
+		  Person p= peoplerepo.findBySno(person.getSno());
+		  if(p==null)
+		  {
+			  peoplerepo.save(person);
+		  }
+		  
+		  else
+			  throw new RecordAlreadyExistsException();
 	}
 
 }

@@ -6,4 +6,5 @@ import com.solution.model.Person;
 
 public interface PeopleRepository extends JpaRepository<Person,Long>{
 
+	  public Person findBySno(int sno);
 }
