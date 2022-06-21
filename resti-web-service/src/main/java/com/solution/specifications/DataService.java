@@ -6,4 +6,5 @@ import com.solution.model.Person;
 
 public interface DataService {
     public List<Person> getPeople();
+    public List<Person> getPeopleFromDB();
 }

@@ -1,8 +1,18 @@
 package com.solution.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="people")
 public class Person {
+@Id
    private Integer sno;
+@Column
    private String name;
+@Column
    private String city;
    
 public Person() {}

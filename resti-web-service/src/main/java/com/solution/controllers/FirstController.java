@@ -26,4 +26,9 @@ public class FirstController {
 	public List<Person> get(){
 		return service.getPeople();
 	}
+	
+	@GetMapping("/dbpeople")
+	public List<Person> get1(){
+		return service.getPeopleFromDB();
+	}
 }
