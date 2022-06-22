@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.solution.model.Dept;
+import com.solution.model.Emp;
 import com.solution.model.Person;
 import com.solution.specifications.DataService;
 import com.solution.utilities.RecordAlreadyExistsException;
@@ -81,4 +83,22 @@ public class FirstController implements ApiSpec{
 		}
 	
 	}
+	
+	  @PostMapping("/depts")
+	  public ResponseEntity<String> addDept(@RequestBody Dept d) {
+		  try {
+		   for(Emp x:d.getEmployees())
+			   x.setDept(d);
+		   service.addDept(d);
+		   
+		  }
+		  catch(RecordAlreadyExistsException e) {
+			  return new ResponseEntity<String>("Record already exists exception",HttpStatus.INTERNAL_SERVER_ERROR);
+		  }
+		  catch(Exception e) {
+			  e.printStackTrace();
+			  return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		  }
+		return new ResponseEntity<String>("Successfully inserted",HttpStatus.CREATED);
+	  }
 }

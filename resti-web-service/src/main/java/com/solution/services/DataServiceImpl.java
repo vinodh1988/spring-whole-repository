@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.solution.model.Dept;
 import com.solution.model.Person;
+import com.solution.repositories.DeptRepository;
 import com.solution.repositories.PeopleRepository;
 import com.solution.specifications.DataService;
 import com.solution.utilities.RecordAlreadyExistsException;
@@ -17,6 +19,9 @@ public class DataServiceImpl implements DataService{
 
 	@Autowired 
 	PeopleRepository peoplerepo;
+	
+	@Autowired
+	DeptRepository repo;
 	
 	@Override
 	public List<Person> getPeople() {
@@ -68,6 +73,16 @@ public class DataServiceImpl implements DataService{
 			throw new RecordNotFoundException();
 		else
 			peoplerepo.delete(p);
+	}
+
+	@Override
+	public void addDept(Dept dept) throws RecordAlreadyExistsException {
+		// TODO Auto-generated method stub
+	    Dept d  = repo.findByDeptno(dept.getDeptno());
+			 if(d==null)
+			  repo.save(dept);
+			 else
+				throw new RecordAlreadyExistsException();
 	}
 	
 	
