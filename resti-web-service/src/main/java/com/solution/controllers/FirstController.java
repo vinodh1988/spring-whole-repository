@@ -101,4 +101,10 @@ public class FirstController implements ApiSpec{
 		  }
 		return new ResponseEntity<String>("Successfully inserted",HttpStatus.CREATED);
 	  }
+	  
+		@GetMapping("/depts")
+		public List<Dept> getdepts(){
+			return service.getDepts();
+		}
 }
+

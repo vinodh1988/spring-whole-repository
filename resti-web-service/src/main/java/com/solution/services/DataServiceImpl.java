@@ -84,6 +84,12 @@ public class DataServiceImpl implements DataService{
 			 else
 				throw new RecordAlreadyExistsException();
 	}
+
+	@Override
+	public List<Dept> getDepts() {
+		// TODO Auto-generated method stub
+		return repo.findAll();
+	}
 	
 	
 
