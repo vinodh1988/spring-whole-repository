@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: PEOPLESERVICE
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/api/**
+      - id: LOADBALANCER
+        uri: http://localhost:9092/
+        predicates:
+        - Path=/sampleapi/**
+      
+     
